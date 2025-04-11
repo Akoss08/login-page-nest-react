@@ -22,16 +22,15 @@ export class AuthService {
     try {
       const user = await this.validateUser(loginDto);
 
-      if (!user) throw new UnauthorizedException('Wrong credentials!');
+      if (!user)
+        throw new UnauthorizedException('Hibás felhasználónév vagy jelszó!');
 
       return user;
     } catch (error) {
       if (error instanceof UnauthorizedException) throw error;
 
       this.logger.error(error);
-      throw new InternalServerErrorException(
-        'Something went wrong, please try again later!',
-      );
+      throw new InternalServerErrorException('Hiba történt!');
     }
   }
 
@@ -41,7 +40,7 @@ export class AuthService {
 
       const user = await this.userService.findUserByEmail(email);
 
-      if (user) throw new BadRequestException('Email already in use');
+      if (user) throw new BadRequestException('Email már foglalt');
 
       const newUser = await this.userService.registerUser(registerReqDto);
 
@@ -50,9 +49,7 @@ export class AuthService {
       if (error instanceof BadRequestException) throw error;
 
       this.logger.error(error);
-      throw new InternalServerErrorException(
-        'Something went wrong, please try again later!',
-      );
+      throw new InternalServerErrorException('Hiba történt!');
     }
   }
 
