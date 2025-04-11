@@ -14,4 +14,18 @@ export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(private readonly userService: UsersService) {}
+
+  private async validateUser(
+    loginDto: LoginReqDto,
+  ): Promise<LoginResDto | null> {
+    const { email, password } = loginDto;
+
+    const user = await this.userService.findUserByEmail(email);
+
+    if (!user) return null;
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    return passwordMatch ? { id: user.id, email: user.email } : null;
+  }
 }
