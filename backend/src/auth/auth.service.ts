@@ -15,6 +15,23 @@ export class AuthService {
 
   constructor(private readonly userService: UsersService) {}
 
+  async authenticate(loginDto: LoginReqDto): Promise<LoginResDto> {
+    try {
+      const user = await this.validateUser(loginDto);
+
+      if (!user) throw new UnauthorizedException('Wrong credentials!');
+
+      return user;
+    } catch (error) {
+      if (error instanceof UnauthorizedException) throw error;
+
+      this.logger.error(error);
+      throw new InternalServerErrorException(
+        'Something went wrong, please try again later!',
+      );
+    }
+  }
+
   private async validateUser(
     loginDto: LoginReqDto,
   ): Promise<LoginResDto | null> {
