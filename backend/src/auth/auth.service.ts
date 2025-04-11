@@ -8,6 +8,9 @@ import { LoginReqDto } from './dtos/loginReq.dto';
 import { LoginResDto } from './dtos/loginRes.dto';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
+import { BadRequestException } from '@nestjs/common';
+import { RegisterReqDto } from './dtos/registerReq.dto';
+import { RegisterResDto } from './dtos/registerRes.dto';
 
 @Injectable()
 export class AuthService {
@@ -24,6 +27,27 @@ export class AuthService {
       return user;
     } catch (error) {
       if (error instanceof UnauthorizedException) throw error;
+
+      this.logger.error(error);
+      throw new InternalServerErrorException(
+        'Something went wrong, please try again later!',
+      );
+    }
+  }
+
+  async register(registerReqDto: RegisterReqDto): Promise<RegisterResDto> {
+    try {
+      const { email } = registerReqDto;
+
+      const user = await this.userService.findUserByEmail(email);
+
+      if (user) throw new BadRequestException('Email already in use');
+
+      const newUser = await this.userService.registerUser(registerReqDto);
+
+      return newUser;
+    } catch (error) {
+      if (error instanceof BadRequestException) throw error;
 
       this.logger.error(error);
       throw new InternalServerErrorException(
