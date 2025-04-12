@@ -71,6 +71,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Validates the user credentials during login.
+   * @param loginDto User login details.
+   * @returns Promise<LoginResDto | null> -> { user id, email } or null
+   */
   private async validateUser(
     loginDto: LoginReqDto,
   ): Promise<LoginResDto | null> {
