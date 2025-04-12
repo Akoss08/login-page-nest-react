@@ -45,6 +45,13 @@ export class AuthService {
     }
   }
 
+  /**
+    Registers a new user after validating their data.
+   * @param registerReqDto User registration details.
+   * @returns Promise<RegisterResDto> -> { user id, }
+   * @throws BadRequestException in case of existing user.
+   * @throws InternalServerErrorException in case of connection issues.
+   */
   async register(registerReqDto: RegisterReqDto): Promise<RegisterResDto> {
     try {
       const { email } = registerReqDto;
