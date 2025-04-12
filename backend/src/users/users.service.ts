@@ -17,6 +17,11 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
+  /**
+   * Finds a user by email.
+   * @param email The email address of the user to be found.
+   * @returns A Promise of User object if a user with the given email is found, else null.
+   */
   async findUserByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.findOne({ where: { email } });
   }
