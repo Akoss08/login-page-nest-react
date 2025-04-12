@@ -21,6 +21,11 @@ export class AuthController {
     return this.authservice.authenticate(loginReqDto);
   }
 
+  /**
+   * @post This method handles register request sent from the client.
+   * @param registerReq The request body from the client (email, password).
+   * @returns A promise that resolves to the registration result (JSON object).
+   */
   @Post('register')
   async register(@Body() registerReqDto: RegisterReqDto) {
     return this.authservice.register(registerReqDto);
