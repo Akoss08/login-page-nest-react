@@ -36,6 +36,7 @@ export class AuthService {
       if (!user)
         throw new UnauthorizedException('Hibás felhasználónév vagy jelszó!');
 
+      // In a real-world scenario, a JWT token would be generated and returned here too
       return user;
     } catch (error) {
       if (error instanceof UnauthorizedException) throw error;
