@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from '/public/logo.png';
 import { API_BASE_URL } from '../constants';
 import OpenEyeIcon from './OpenEyeIcon';
 import ClosedEyeIcon from './ClosedEyeIcon';
@@ -57,7 +56,7 @@ function LoginForm() {
   return (
     <div className="flex flex-col items-center">
       <div>
-        <img src={logo} alt="logo" className="w-[60px]" />
+        <img src="/logo.png" alt="logo" className="w-[60px]" />
       </div>
       <h1 className="font-semibold text-white">Bejelentkezés</h1>
       <form onSubmit={handleSubmit} className="bg-white rounded-md flex flex-col m-5 p-5 w-full">
