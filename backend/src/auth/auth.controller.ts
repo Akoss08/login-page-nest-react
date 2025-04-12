@@ -3,6 +3,10 @@ import { LoginReqDto } from './dtos/loginReq.dto';
 import { AuthService } from './auth.service';
 import { RegisterReqDto } from './dtos/registerReq.dto';
 
+/**
+ * This controller layer manages authentication requests
+ * and provides endpoints for login and register.
+ */
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authservice: AuthService) {}
