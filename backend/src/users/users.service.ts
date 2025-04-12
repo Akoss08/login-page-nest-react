@@ -26,6 +26,12 @@ export class UsersService {
     return await this.usersRepository.findOne({ where: { email } });
   }
 
+  /**
+   * Registers a new user by saving their data to the database.
+   * The password is hashed before being stored.
+   * @param registerReqDto The data transfer object containing registration details (email, password).
+   * @returns A Promise of RegisterResDto, which contains the id of the newly created user.
+   */
   async registerUser(registerReqDto: RegisterReqDto): Promise<RegisterResDto> {
     const { email, password } = registerReqDto;
 
