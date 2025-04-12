@@ -22,6 +22,13 @@ export class AuthService {
 
   constructor(private readonly userService: UsersService) {}
 
+  /**
+   * Handles the authentication of a user by validating credentials.
+   * @param loginDto User login details.
+   * @returns Promise<LoginResDto> -> { user id, email }
+   * @throws UnauthorizedException in case of wrong credentials.
+   * @throws InternalServerErrorException in case of connection issues.
+   */
   async authenticate(loginDto: LoginReqDto): Promise<LoginResDto> {
     try {
       const user = await this.validateUser(loginDto);
