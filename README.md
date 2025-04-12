@@ -9,7 +9,7 @@
   <p align="center">
     A simple nestjs and react web application for a login page.
   <br />
-    <a href="https://github.com/MAdem01/el-proyecte-grande-sprint-1"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Akoss08/login-page-nest-react.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/users/Akoss08/projects/9">View Backlogs</a>
