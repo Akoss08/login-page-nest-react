@@ -6,6 +6,10 @@ import * as bcrypt from 'bcrypt';
 import { RegisterReqDto } from 'src/auth/dtos/registerReq.dto';
 import { RegisterResDto } from 'src/auth/dtos/registerRes.dto';
 
+/**
+ * Service for managing user operations such as finding users by email and registering new users.
+ * Interacts with the database via usersRepository.
+ */
 @Injectable()
 export class UsersService {
   constructor(
