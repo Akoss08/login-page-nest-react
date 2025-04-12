@@ -12,6 +12,10 @@ import { BadRequestException } from '@nestjs/common';
 import { RegisterReqDto } from './dtos/registerReq.dto';
 import { RegisterResDto } from './dtos/registerRes.dto';
 
+/**
+ * This service layer is a bridge between auth controller and db, it handles business
+ * logic for authentication requests and provides DTO-s for login and register as responses.
+ */
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
