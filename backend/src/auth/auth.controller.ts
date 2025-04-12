@@ -11,6 +11,11 @@ import { RegisterReqDto } from './dtos/registerReq.dto';
 export class AuthController {
   constructor(private readonly authservice: AuthService) {}
 
+  /**
+   * @post This method handles login request sent from the client.
+   * @param loginReqDto The request body from the client (email, password).
+   * @returns A promise that resolves to the login result (JSON object).
+   */
   @Post('login')
   async login(@Body() loginReqDto: LoginReqDto) {
     return this.authservice.authenticate(loginReqDto);
